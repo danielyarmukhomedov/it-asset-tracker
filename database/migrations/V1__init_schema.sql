@@ -1,5 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
-
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     employee_code VARCHAR(20) UNIQUE NOT NULL CHECK (employee_code ~ '^EMP-[0-9]{5}$'),
