@@ -1,0 +1,30 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Flyway DB Migrations
+        run: |
+          docker run --rm --network host \
+            -v "${PWD}/database/migrations:/flyway/sql:ro" \
+            flyway/flyway:10-alpine \
+            -url=jdbc:postgresql://127.0.0.1:5432/asset_tracker \
+            -user=app_user \
+            -password="${{ secrets.DB_PASSWORD }}" \
+            migrate
+
+      - name: Build and Deploy Containers
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          docker compose down
+          docker compose build
+          docker compose up -d

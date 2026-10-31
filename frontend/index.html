@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCHIVE // 01 — IT ASSET LEDGER</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout-grid">
+    <aside class="sidebar">
+      <div>
+        <p style="font-weight:600;">SYS.VER // 2026.4</p>
+        <p style="margin-top: 12px;">РЕЕСТР АКТИВОВ ИНФРАСТРУКТУРЫ. ДОСТУП АВТОРИЗОВАН.</p>
+      </div>
+      <div style="margin-top: 24px;">
+        <p>DB: POSTGRESQL 18</p>
+        <p>HOST: ARCHIVE.LOCAL</p>
+      </div>
+    </aside>
+    <main class="main-workspace">
+      <header class="masthead">
+        <h1>Registry / Hardware</h1>
+        <button class="btn-brutal" id="refresh-btn">SYNC LEDGER</button>
+      </header>
+      <div class="table-wrapper">
+        <table class="data-ledger">
+          <thead>
+            <tr>
+              <th>INV. TAG</th>
+              <th>SERIAL NO.</th>
+              <th>HARDWARE MODEL</th>
+              <th>CLASS</th>
+              <th>NET. IP</th>
+              <th>STATE</th>
+            </tr>
+          </thead>
+          <tbody id="ledger-body"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

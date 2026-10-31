@@ -1,0 +1,134 @@
+@import url('https://googleapis.com');
+
+:root {
+  --bg-paper: #F4F1EA;
+  --ink-black: #141413;
+  --accent-alert: #8C2D19;
+  --border-hard: 1px solid var(--ink-black);
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+body {
+  background-color: var(--bg-paper);
+  color: var(--ink-black);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+  border-top: var(--border-hard);
+}
+
+.sidebar {
+  border-right: var(--border-hard);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-workspace {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.masthead {
+  border-bottom: var(--border-hard);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.masthead h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-ledger {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.data-ledger th,
+.data-ledger td {
+  border-bottom: var(--border-hard);
+  border-right: var(--border-hard);
+  padding: 10px 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-ledger th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  background-color: var(--ink-black);
+  color: var(--bg-paper);
+}
+
+.data-ledger tr:hover td {
+  background-color: #E6E2DD;
+}
+
+.btn-brutal {
+  background-color: var(--ink-black);
+  color: var(--bg-paper);
+  border: var(--border-hard);
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-brutal:hover {
+  background-color: var(--bg-paper);
+  color: var(--ink-black);
+}
+
+.badge-critical {
+  background-color: var(--accent-alert);
+  color: var(--bg-paper);
+  padding: 2px 6px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    border-right: none;
+    border-bottom: var(--border-hard);
+    gap: 16px;
+  }
+  .masthead {
+    padding: 16px;
+  }
+}
