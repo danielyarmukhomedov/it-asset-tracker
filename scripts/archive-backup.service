@@ -1,0 +1,11 @@
+[Unit]
+Description=ARCHIVE // 01 PostgreSQL Disaster Recovery Backup
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/bin/backup_db.sh
+StandardOutput=journal
+StandardError=journal

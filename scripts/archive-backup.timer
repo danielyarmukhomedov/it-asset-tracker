@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily Timer for ARCHIVE // 01 Database Backup
+
+[Timer]
+# Запуск каждый день в 03:00 ночи + при старте, если сервер был выключен
+OnCalendar=*-*-* 03:00:00
+Persistent=true
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target
