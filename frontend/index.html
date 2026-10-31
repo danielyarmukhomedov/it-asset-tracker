@@ -1,3 +1,4 @@
+<!-- ФАЙЛ: frontend/index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,19 +11,62 @@
   <div class="layout-grid">
     <aside class="sidebar">
       <div>
-        <p style="font-weight:600;">SYS.VER // 2026.4</p>
-        <p style="margin-top: 12px;">РЕЕСТР АКТИВОВ ИНФРАСТРУКТУРЫ. ДОСТУП АВТОРИЗОВАН.</p>
+        <div class="brand-box">
+          <!-- Векторный бруталистский логотип серверной стойки -->
+          <svg width="42" height="42" viewBox="0 0 44 44" fill="none" xmlns="http://w3.org">
+            <rect x="2" y="2" width="40" height="40" stroke="#141413" stroke-width="2.5" />
+            <line x1="2" y1="15" x2="42" y2="15" stroke="#141413" stroke-width="2" />
+            <line x1="2" y1="28" x2="42" y2="28" stroke="#141413" stroke-width="2" />
+            <rect x="7" y="7" width="5" height="3" fill="#141413" />
+            <rect x="7" y="20" width="5" height="3" fill="#141413" />
+            <rect x="7" y="33" width="5" height="3" fill="#8C2D19" />
+            <line x1="17" y1="8.5" x2="36" y2="8.5" stroke="#141413" stroke-width="1.5" />
+            <line x1="17" y1="21.5" x2="36" y2="21.5" stroke="#141413" stroke-width="1.5" />
+            <line x1="17" y1="34.5" x2="36" y2="34.5" stroke="#141413" stroke-width="1.5" />
+          </svg>
+          <div>
+            <div class="brand-title">ARCHIVE // 01</div>
+            <div style="font-size: 11px;">SYS.VER 2026.4 [AIR-GAPPED]</div>
+          </div>
+        </div>
+
+        <p style="margin-top: 16px;">РЕЕСТР ИНФРАСТРУКТУРНЫХ АКТИВОВ И ОБОРУДОВАНИЯ ЦОД.</p>
+
+        <!-- Сводные метрики в реальном времени -->
+        <div class="stats-grid">
+          <div class="stat-cell">
+            <div class="stat-label">TOTAL UNITS</div>
+            <div class="stat-value" id="stat-total">0</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-label">MAINTENANCE</div>
+            <div class="stat-value critical" id="stat-maint">0</div>
+          </div>
+        </div>
       </div>
-      <div style="margin-top: 24px;">
-        <p>DB: POSTGRESQL 18</p>
-        <p>HOST: ARCHIVE.LOCAL</p>
+
+      <div style="margin-top: 24px; border-top: var(--border-hard); padding-top: 16px; font-size: 11px;">
+        <p>DB ENGINE: POSTGRESQL 18</p>
+        <p>AUTH: SCRAM-SHA-256</p>
+        <p>FONTS: SYSTEM LOCAL</p>
       </div>
     </aside>
+
     <main class="main-workspace">
       <header class="masthead">
         <h1>Registry / Hardware</h1>
         <button class="btn-brutal" id="refresh-btn">SYNC LEDGER</button>
       </header>
+
+      <section class="toolbar">
+        <div class="filter-group">
+          <button class="btn-brutal active" data-filter="ALL">ALL UNITS</button>
+          <button class="btn-brutal" data-filter="ACTIVE">ACTIVE</button>
+          <button class="btn-brutal" data-filter="MAINTENANCE">MAINTENANCE</button>
+        </div>
+        <input type="text" id="search-box" class="search-input" placeholder="SEARCH TAG / SERIAL / IP...">
+      </section>
+
       <div class="table-wrapper">
         <table class="data-ledger">
           <thead>

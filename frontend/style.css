@@ -1,12 +1,12 @@
-@import url('https://googleapis.com');
-
+/* ФАЙЛ: frontend/style.css */
 :root {
   --bg-paper: #F4F1EA;
   --ink-black: #141413;
   --accent-alert: #8C2D19;
   --border-hard: 1px solid var(--ink-black);
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  /* Автономные системные шрифты (Zero External Requests / GDPR Safe) */
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
 }
 
 * {
@@ -22,12 +22,13 @@ body {
   color: var(--ink-black);
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
 }
 
 .layout-grid {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 300px 1fr;
   min-height: 100vh;
   border-top: var(--border-hard);
 }
@@ -40,14 +41,59 @@ body {
   justify-content: space-between;
 }
 
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: var(--border-hard);
+}
+
+.brand-title {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: var(--border-hard);
+  border-left: var(--border-hard);
+  margin-top: 24px;
+}
+
+.stat-cell {
+  border-right: var(--border-hard);
+  border-bottom: var(--border-hard);
+  padding: 12px;
+}
+
+.stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.stat-value {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.stat-value.critical {
+  color: var(--accent-alert);
+}
+
 .main-workspace {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
 }
 
 .masthead {
   border-bottom: var(--border-hard);
-  padding: 24px 32px;
+  padding: 28px 32px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -57,10 +103,39 @@ body {
 
 .masthead h1 {
   font-family: var(--font-serif);
-  font-size: clamp(36px, 6vw, 64px);
+  font-size: clamp(38px, 5.5vw, 68px);
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 0.92;
   text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.toolbar {
+  border-bottom: var(--border-hard);
+  padding: 12px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background-color: #EAE6DF;
+}
+
+.filter-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  background-color: var(--bg-paper);
+  border: var(--border-hard);
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-black);
+  min-width: 240px;
+  outline: none;
 }
 
 .table-wrapper {
@@ -72,14 +147,14 @@ body {
 .data-ledger {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+  min-width: 650px;
 }
 
 .data-ledger th,
 .data-ledger td {
   border-bottom: var(--border-hard);
   border-right: var(--border-hard);
-  padding: 10px 14px;
+  padding: 11px 16px;
   text-align: left;
   white-space: nowrap;
 }
@@ -88,6 +163,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 11px;
+  letter-spacing: 0.06em;
   background-color: var(--ink-black);
   color: var(--bg-paper);
 }
@@ -100,14 +176,15 @@ body {
   background-color: var(--ink-black);
   color: var(--bg-paper);
   border: var(--border-hard);
-  padding: 10px 18px;
+  padding: 8px 16px;
   font-family: var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
   cursor: pointer;
 }
 
-.btn-brutal:hover {
+.btn-brutal:hover,
+.btn-brutal.active {
   background-color: var(--bg-paper);
   color: var(--ink-black);
 }
@@ -126,9 +203,12 @@ body {
   .sidebar {
     border-right: none;
     border-bottom: var(--border-hard);
-    gap: 16px;
+    gap: 20px;
   }
-  .masthead {
+  .masthead, .toolbar {
     padding: 16px;
+  }
+  .search-input {
+    width: 100%;
   }
 }
